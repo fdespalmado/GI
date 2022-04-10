@@ -1,0 +1,37 @@
+<html>
+  <div id="console"></div>
+</html>
+
+<script>
+
+  function print(s) {
+    if (document.getElementById("console").innerHTML.length == 0) {
+      document.getElementById("console").innerHTML = s;
+    } else {
+      document.getElementById("console").innerHTML = document.getElementById("console").innerHTML + "<br />" + s;
+    }
+  }
+
+  var base_chance = 0.36;
+  var chance_increase = 0.2;
+  var modified_chance = base_chance;
+
+  var sample_size = 100000;
+  var procs = 0;
+
+  for (var i = 0; i < sample_size; i++) {
+    if (Math.random() <= modified_chance) {
+      procs++;
+      modified_chance = base_chance;
+    } else {
+      modified_chance = modified_chance + chance_increase;
+    }
+  }
+
+  print("base chance: " + base_chance);
+  print("chance increase: " + chance_increase);
+  print("sample size: " + sample_size);
+  print("procs: " + procs);
+  print("average rate: " + (procs / sample_size))
+
+</script>
